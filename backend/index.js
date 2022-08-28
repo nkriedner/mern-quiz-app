@@ -1,6 +1,7 @@
 // IMPORTS (npm modules):
 require("dotenv").config(); // for using envirionment variables from .env file
 const express = require("express");
+const mongoose = require("mongoose");
 
 // Create the express app:
 const app = express();
@@ -16,6 +17,15 @@ app.use((req, res, next) => {
 const quizdataRoutes = require("./routes/quizdata");
 app.use("/api/quizdata", quizdataRoutes);
 
-// Start the express app:
+// Connect to DB:
 const port = process.env.PORT;
-app.listen(port, () => console.log(`Server started on port ${port}.`));
+mongoose
+    .connect(process.env.MONGO_URI)
+    .then(() => {
+        console.log("Connected to MongoDB.");
+        // Start the express app:
+        app.listen(port, () => console.log(`Server started on port ${port}.`));
+    })
+    .catch((error) => {
+        console.log("Error when connecting to DB:", error);
+    });
