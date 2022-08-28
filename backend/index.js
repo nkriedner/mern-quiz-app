@@ -1,21 +1,20 @@
-// Import and use dotenv module for using envirionment variables from .env file:
-require("dotenv").config();
-
-// Import NPM modules:
+// IMPORTS (npm modules):
+require("dotenv").config(); // for using envirionment variables from .env file
 const express = require("express");
 
 // Create the express app:
 const app = express();
 
-// Middleware:
+// General MIDDLEWARE:
+app.use(express.json()); // to use and parse json data
 app.use((req, res, next) => {
-    console.log(`${req.method} request on ${req.path}`);
+    console.log(`${req.method} request on ${req.path}`); // logs the method and path for every server request
+    next();
 });
 
-// Create route(s):
-app.get("/", (req, res) => {
-    res.json({ mssg: "You are on the / route" });
-});
+// Route MIDDLEWARE
+const quizdataRoutes = require("./routes/quizdata");
+app.use("/api/quizdata", quizdataRoutes);
 
 // Start the express app:
 const port = process.env.PORT;
