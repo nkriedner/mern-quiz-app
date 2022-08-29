@@ -1,12 +1,135 @@
+/*************/
+/* CSS RESET */
+/*************/
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
+/******************/
+/* GENERAL STYLES */
+/******************/
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial;
+    background: linear-gradient(to right, hsl(240, 100%, 60%), hsl(240, 100%, 80%), hsl(240, 100%, 60%));
 }
+
+main {
+    text-align: center;
+    padding: 1.2rem;
+}
+
+h1,
+h2 {
+    margin: 1rem 0 2rem 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+li {
+    list-style: none;
+}
+
+/*******************/
+/* UTILITY CLASSES */
+/*******************/
+.btn {
+    padding: 1rem 2rem;
+    margin-top: 2rem;
+    border: none;
+    outline: none;
+    background-color: hsl(215, 100%, 50%);
+    color: white;
+    border-radius: 10px;
+    transition: all 0.5s;
+}
+
+/*************************/
+/* HEADER NAVIGATION BAR */
+/*************************/
+header {
+    width: 100vw;
+    background: black;
+    color: white;
+}
+
+header nav ul {
+    display: flex;
+    justify-content: center;
+}
+
+header nav ul li a {
+    display: block;
+    font-size: 1.2rem;
+    padding: 1rem;
+    transition: all 0.5s;
+}
+
+header nav ul li a:hover {
+    background: white;
+    color: black;
+}
+
+/*************/
+/* CARD FORM */
+/*************/
+form {
+    width: 500px;
+    border-radius: 5px;
+    padding: 1rem;
+    margin: auto;
+    margin-bottom: 2rem;
+}
+
+form textarea {
+    width: 500px;
+    height: 150px;
+    max-width: 100%;
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+    font-size: 1.3rem;
+    font-family: Arial;
+    color: hsl(120, 100%, 15%);
+    outline: none;
+    border: 3px solid black;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+form textarea::placeholder {
+    font-style: italic;
+}
+
+form textarea:focus {
+    border: 5px solid hsl(120, 100%, 15%);
+    transform: scale(1.02);
+}
+
+form button {
+    padding: 0.5rem 1rem;
+}
+
+form button.btn-submit {
+    background: green;
+}
+
+.error-box {
+    width: 500px;
+    border: 2px solid red;
+    margin: 1rem auto 2rem auto;
+    padding: 2.5rem;
+    background-color: white;
+    color: red;
+    font-weight: bold;
+}
+
+/*************/
+/* CARD LIST */
+/*************/
 
 .quizdata-card {
     background-color: blue;

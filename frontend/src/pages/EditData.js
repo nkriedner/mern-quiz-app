@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import QuizdataDetails from "../components/QuizdataDetails";
 
-const Home = () => {
+const EditData = () => {
     const [allQuizdata, setAllQuizdata] = useState(null);
 
     useEffect(() => {
@@ -19,10 +19,10 @@ const Home = () => {
 
     return (
         <div>
-            <h2>Welcome from Home</h2>
+            <h1>Inside EditData component</h1>
             {allQuizdata && allQuizdata.map((quizdata) => <QuizdataDetails key={quizdata._id} quizdata={quizdata} />)}
         </div>
     );
 };
 
-export default Home;
+export default EditData;
