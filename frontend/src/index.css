@@ -25,6 +25,14 @@ h2 {
     margin: 1rem 0 2rem 0;
 }
 
+h2 {
+    background-color: hsl(246, 65%, 29%);
+    color: white;
+    margin-bottom: 3rem;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -148,4 +156,118 @@ form button.btn-submit {
 
 .quizdata-card:nth-child(even) {
     background-color: purple;
+}
+
+/*************/
+/* PLAY QUIZ */
+/*************/
+.quiz-experience-container h2 {
+    background-color: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.quiz-card {
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    background-color: hsl(246, 65%, 39%);
+    text-align: center;
+    padding: 2rem;
+    border-radius: 5px;
+}
+.quiz-answers {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.answer {
+    min-width: 40%;
+    background-color: hsl(246, 65%, 79%);
+    color: hsl(246, 65%, 19%);
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.answer:hover {
+    cursor: pointer;
+    transform: scale(1.03) translateY(-3px);
+}
+
+.correct-answer,
+.correct-answer:hover {
+    background-color: green;
+    color: white;
+}
+
+.false-answer,
+.false-answer:hover {
+    background-color: red;
+    color: white;
+}
+
+.score-minus {
+    background-color: white;
+    color: red;
+    padding: 1rem;
+    font-weight: bold;
+    border-radius: 10px;
+    position: fixed;
+    top: 5rem;
+    left: 1rem;
+}
+
+.score-plus {
+    background-color: white;
+    color: red;
+    padding: 1rem;
+    font-weight: bold;
+    border-radius: 10px;
+    position: fixed;
+    top: 5rem;
+    right: 1rem;
+}
+
+.quiz-experience-container .btn {
+    margin-top: 1rem;
+    padding: 1rem 2rem;
+    border: none;
+    outline: none;
+    background-color: hsl(246, 65%, 29%);
+    color: white;
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+.quiz-experience-container .btn:hover {
+    background-color: hsl(246, 65%, 19%);
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.quiz-experience-container .btn.btn-show-answer {
+    background-color: hsl(112, 47%, 20%);
+}
+.quiz-experience-container .btn.btn-show-answer:hover {
+    background-color: hsl(112, 47%, 15%);
+}
+
+.quiz-experience-container .btn.btn-next {
+    background-color: hsl(275, 100%, 35%);
+}
+.quiz-experience-container .btn.btn-next:hover {
+    background-color: hsl(275, 100%, 30%);
 }
