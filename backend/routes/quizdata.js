@@ -1,31 +1,29 @@
 // IMPORTS 1 (npm modules):
 const express = require("express");
+const Quizdata = require("../models/quizdataModel"); // imports the quizdata model
+const {
+    getAllQuizdata,
+    getQuizdata,
+    createQuizdata,
+    deleteQuizdata,
+    updateQuizdata,
+} = require("../controllers/quizdataController"); // imports the functions to interact with the database
 
-const router = express.Router();
+const router = express.Router(); // creates an express router
 
 // GET all quizdata
-router.get("/", (req, res) => {
-    res.json({ mssg: "GET all quizdata" });
-});
+router.get("/", getAllQuizdata);
 
 // GET a single quizdata
-router.get("/:id", (req, res) => {
-    res.json({ mssg: "GET a single quizdata" });
-});
+router.get("/:id", getQuizdata);
 
 // POST a new quizdata
-router.post("/:id", (req, res) => {
-    res.json({ mssg: "POST a new quizdata" });
-});
+router.post("/", createQuizdata);
 
 // DELETE a quizdata
-router.delete("/:id", (req, res) => {
-    res.json({ mssg: "DELETE a quizdata" });
-});
+router.delete("/:id", deleteQuizdata);
 
 // UPDATE a quizdata
-router.patch("/:id", (req, res) => {
-    res.json({ mssg: "UPDATE a quizdata" });
-});
+router.patch("/:id", updateQuizdata);
 
 module.exports = router;
