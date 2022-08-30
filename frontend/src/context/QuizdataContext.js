@@ -13,6 +13,10 @@ export const quizdataReducer = (state, action) => {
             return {
                 quizdata: [action.payload, ...state.quizdata],
             };
+        case "DELETE_QUIZDATA":
+            return {
+                quizdata: state.quizdata.filter((data) => data._id !== action.payload._id), // keeps all quizdata that does not equal the id to delete
+            };
         default:
             return state;
     }

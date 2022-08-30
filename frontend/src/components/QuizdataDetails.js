@@ -1,4 +1,19 @@
+import { useQuizdataContext } from "../hooks/useQuizdataContext";
+
 const QuizdataDetails = ({ quizdata }) => {
+    const { dispatch } = useQuizdataContext(); // to use the dispatch function
+
+    const handleClick = async () => {
+        const response = await fetch("/api/quizdata/" + quizdata._id, {
+            method: "DELETE",
+        });
+        const json = await response.json();
+
+        if (response.ok) {
+            dispatch({ type: "DELETE_QUIZDATA", payload: json });
+        }
+    };
+
     return (
         <div className="quizdata-card">
             <h3>Question: {quizdata.question}</h3>
@@ -7,6 +22,7 @@ const QuizdataDetails = ({ quizdata }) => {
             <p>Answer 3: {quizdata.answer3}</p>
             <p>Answer 4: {quizdata.answer4}</p>
             <p>Solution: {quizdata.solution}</p>
+            <span onClick={handleClick}>Delete</span>
         </div>
     );
 };
