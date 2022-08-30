@@ -22,6 +22,7 @@ const EditData = () => {
         <div>
             <h1>Inside EditData component</h1>
             <QuizdataForm></QuizdataForm>
+            <h2>Quizdata List</h2>
             {allQuizdata && allQuizdata.map((quizdata) => <QuizdataDetails key={quizdata._id} quizdata={quizdata} />)}
         </div>
     );
