@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import QuizdataForm from "../components/QuizdataForm";
 import QuizdataDetails from "../components/QuizdataDetails";
 
 const EditData = () => {
@@ -20,6 +21,7 @@ const EditData = () => {
     return (
         <div>
             <h1>Inside EditData component</h1>
+            <QuizdataForm></QuizdataForm>
             {allQuizdata && allQuizdata.map((quizdata) => <QuizdataDetails key={quizdata._id} quizdata={quizdata} />)}
         </div>
     );
