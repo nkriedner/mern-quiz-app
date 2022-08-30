@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useQuizdataContext } from "../hooks/useQuizdataContext";
 
 const QuizdataForm = () => {
+    const { dispatch } = useQuizdataContext(); // destructures the dispatch function
     const [newCategory, setNewCategory] = useState("");
     const [newQuestion, setNewQuestion] = useState("");
     const [newAnswer1, setNewAnswer1] = useState("");
@@ -49,6 +51,7 @@ const QuizdataForm = () => {
             setNewSolution("");
             setError(null);
             console.log("New quizdata added to database.");
+            dispatch({ type: "CREATE_QUIZDATA", payload: json });
         }
     };
 
