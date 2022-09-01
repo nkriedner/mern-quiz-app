@@ -1,6 +1,7 @@
 // IMPORTS:
 const mongoose = require("mongoose"); // for database connection
 const byrypt = require("bcrypt"); // for hashing passwords
+const validator = require("validator"); // for validating email & password when signing up
 
 // Initialize a mongoose Schema:
 const Schema = mongoose.Schema;
@@ -21,6 +22,17 @@ const userSchema = new Schema({
 // static signup model:
 // (the function needs to be a regular function to use the 'this' keyword)
 userSchema.statics.signup = async function (email, password) {
+    // Validate email and password inputs:
+    if (!email || !password) {
+        throw Error("All signup fields must be filled out.");
+    }
+    if (!validator.isEmail(email)) {
+        throw Error("The filled in email is not valid.");
+    }
+    if (!validator.isStrongPassword(password)) {
+        throw Error("Your password is not strong enough.");
+    }
+
     // Check if email already esists in database:
     const exists = await this.findOne({ email });
 
