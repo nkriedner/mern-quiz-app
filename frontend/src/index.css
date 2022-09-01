@@ -222,6 +222,16 @@ form button.btn-submit {
     transition: all 0.3s;
 }
 
+.answer.green {
+    background-color: green;
+    color: white;
+}
+
+.answer.red {
+    background-color: red;
+    color: white;
+}
+
 .answer:hover {
     cursor: pointer;
     transform: scale(1.03) translateY(-3px);

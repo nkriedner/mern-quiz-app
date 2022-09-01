@@ -46,6 +46,7 @@ const QuizdataForm = () => {
             setEmptyFields(json.emptyFields);
         }
         if (response.ok) {
+            setNewCategory("");
             setNewQuestion("");
             setNewQuestion("");
             setNewAnswer1("");
