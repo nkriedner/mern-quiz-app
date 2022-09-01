@@ -57,6 +57,11 @@ li {
     transition: all 0.5s;
 }
 
+.btn:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
 /*************************/
 /* HEADER NAVIGATION BAR */
 /*************************/
@@ -97,7 +102,7 @@ form {
 form textarea {
     width: 500px;
     height: 100px;
-    max-width: 100%;
+    max-width: 95%;
     margin-bottom: 0.5rem;
     padding: 1rem;
     font-size: 1.3rem;
@@ -165,17 +170,19 @@ form button.btn-submit {
 }
 
 .quizdata-card span {
+    font-size: 0.7rem;
     display: inline-block;
-    padding: 0.5rem 1rem;
+    padding: 0.3rem 0.6rem;
     background-color: red;
     color: white;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 5px;
+    right: 5px;
 }
 
 .quizdata-card span:hover {
     cursor: pointer;
+    transform: scale(1.04);
 }
 
 /*************/
@@ -234,7 +241,7 @@ form button.btn-submit {
 
 .answer:hover {
     cursor: pointer;
-    transform: scale(1.03) translateY(-3px);
+    transform: scale(1.01) translateY(-1px);
 }
 
 .correct-answer,
@@ -284,11 +291,12 @@ form button.btn-submit {
 
 .quiz-experience-container .btn:hover {
     background-color: hsl(246, 65%, 19%);
-    transform: scale(1.05);
-    cursor: pointer;
+    /* transform: scale(1.05); */
+    /* cursor: pointer; */
 }
 
 .quiz-experience-container .btn.btn-show-answer {
+    margin-right: 0.3rem;
     background-color: hsl(112, 47%, 20%);
 }
 .quiz-experience-container .btn.btn-show-answer:hover {
@@ -296,6 +304,7 @@ form button.btn-submit {
 }
 
 .quiz-experience-container .btn.btn-next {
+    margin-left: 0.3rem;
     background-color: hsl(275, 100%, 35%);
 }
 .quiz-experience-container .btn.btn-next:hover {

@@ -15,7 +15,9 @@ app.use((req, res, next) => {
 
 // Route MIDDLEWARE
 const quizdataRoutes = require("./routes/quizdata");
+const userRoutes = require("./routes/user");
 app.use("/api/quizdata", quizdataRoutes);
+app.use("/api/user", userRoutes);
 
 // Connect to DB:
 const port = process.env.PORT;

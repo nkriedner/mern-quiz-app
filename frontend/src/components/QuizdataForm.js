@@ -108,7 +108,7 @@ const QuizdataForm = () => {
                     placeholder="Solution"
                 />
 
-                <button className="btn">Submit</button>
+                <button className="btn btn-submit">Submit</button>
                 {/* Display error message if there is one: */}
                 {error && <div className="error-box">{error}</div>}
             </form>
