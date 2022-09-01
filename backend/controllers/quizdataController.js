@@ -31,6 +31,33 @@ const getQuizdata = async (req, res) => {
 const createQuizdata = async (req, res) => {
     const { category, question, answer1, answer2, answer3, answer4, solution } = req.body;
 
+    let emptyFields = [];
+
+    if (!category) {
+        emptyFields.push("category");
+    }
+    if (!question) {
+        emptyFields.push("question");
+    }
+    if (!answer1) {
+        emptyFields.push("answer 1");
+    }
+    if (!answer2) {
+        emptyFields.push("answer 2");
+    }
+    if (!answer3) {
+        emptyFields.push("answer 3");
+    }
+    if (!answer4) {
+        emptyFields.push("answer 4");
+    }
+    if (!solution) {
+        emptyFields.push("solution");
+    }
+    if (emptyFields.length > 0) {
+        return res.status(400).json({ error: "Please fill in all the fields!", emptyFields });
+    }
+
     // Add document to database:
     try {
         const quizdata = await Quizdata.create({ category, question, answer1, answer2, answer3, answer4, solution });

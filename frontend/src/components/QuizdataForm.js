@@ -11,6 +11,7 @@ const QuizdataForm = () => {
     const [newAnswer4, setNewAnswer4] = useState("");
     const [newSolution, setNewSolution] = useState("");
     const [error, setError] = useState(null);
+    const [emptyfields, setEmptyFields] = useState([]);
 
     // Function for handling the form submission:
     const handleSubmit = async (e) => {
@@ -25,7 +26,6 @@ const QuizdataForm = () => {
             answer4: newAnswer4,
             solution: newSolution,
         };
-        console.log("newQuizdata:", newQuizdata);
 
         // Send the new quizdata with post request:
         const response = await fetch("/api/quizdata", {
@@ -39,7 +39,11 @@ const QuizdataForm = () => {
 
         // Check if the post request was ok:
         if (!response.ok) {
+            console.log("json:", json);
+            console.log("json.emptyfields:", json.emptyFields);
+            console.log("json.error:", json.error);
             setError(json.error);
+            setEmptyFields(json.emptyFields);
         }
         if (response.ok) {
             setNewQuestion("");
@@ -50,6 +54,7 @@ const QuizdataForm = () => {
             setNewAnswer4("");
             setNewSolution("");
             setError(null);
+            setEmptyFields([]);
             console.log("New quizdata added to database.");
             dispatch({ type: "CREATE_QUIZDATA", payload: json });
         }
@@ -59,13 +64,48 @@ const QuizdataForm = () => {
         <div>
             <h2>Add New Quizdata:</h2>
             <form onSubmit={handleSubmit}>
-                <textarea onChange={(e) => setNewCategory(e.target.value)} value={newCategory} placeholder="Category" />
-                <textarea onChange={(e) => setNewQuestion(e.target.value)} value={newQuestion} placeholder="Question" />
-                <textarea onChange={(e) => setNewAnswer1(e.target.value)} value={newAnswer1} placeholder="Answer 1" />
-                <textarea onChange={(e) => setNewAnswer2(e.target.value)} value={newAnswer2} placeholder="Answer 2" />
-                <textarea onChange={(e) => setNewAnswer3(e.target.value)} value={newAnswer3} placeholder="Answer 3" />
-                <textarea onChange={(e) => setNewAnswer4(e.target.value)} value={newAnswer4} placeholder="Answer 4" />
-                <textarea onChange={(e) => setNewSolution(e.target.value)} value={newSolution} placeholder="Solution" />
+                <textarea
+                    className={emptyfields && emptyfields.includes("category") ? "emptyfield-error" : ""}
+                    onChange={(e) => setNewCategory(e.target.value)}
+                    value={newCategory}
+                    placeholder="Category"
+                />
+                <textarea
+                    className={emptyfields && emptyfields.includes("question") ? "emptyfield-error" : ""}
+                    onChange={(e) => setNewQuestion(e.target.value)}
+                    value={newQuestion}
+                    placeholder="Question"
+                />
+                <textarea
+                    className={emptyfields && emptyfields.includes("answer 1") ? "emptyfield-error" : ""}
+                    onChange={(e) => setNewAnswer1(e.target.value)}
+                    value={newAnswer1}
+                    placeholder="Answer 1"
+                />
+                <textarea
+                    className={emptyfields && emptyfields.includes("answer 2") ? "emptyfield-error" : ""}
+                    onChange={(e) => setNewAnswer2(e.target.value)}
+                    value={newAnswer2}
+                    placeholder="Answer 2"
+                />
+                <textarea
+                    className={emptyfields && emptyfields.includes("answer 3") ? "emptyfield-error" : ""}
+                    onChange={(e) => setNewAnswer3(e.target.value)}
+                    value={newAnswer3}
+                    placeholder="Answer 3"
+                />
+                <textarea
+                    className={emptyfields && emptyfields.includes("answer 4") ? "emptyfield-error" : ""}
+                    onChange={(e) => setNewAnswer4(e.target.value)}
+                    value={newAnswer4}
+                    placeholder="Answer 4"
+                />
+                <textarea
+                    className={emptyfields && emptyfields.includes("solution") ? "emptyfield-error" : ""}
+                    onChange={(e) => setNewSolution(e.target.value)}
+                    value={newSolution}
+                    placeholder="Solution"
+                />
 
                 <button className="btn">Submit</button>
                 {/* Display error message if there is one: */}
