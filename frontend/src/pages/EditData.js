@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import QuizdataForm from "../components/QuizdataForm";
 import QuizdataDetails from "../components/QuizdataDetails";
 import { useQuizdataContext } from "../hooks/useQuizdataContext";
@@ -17,7 +17,7 @@ const EditData = () => {
         };
 
         fetchAllQuizdata();
-    }, []);
+    }, [dispatch]);
 
     return (
         <div>
