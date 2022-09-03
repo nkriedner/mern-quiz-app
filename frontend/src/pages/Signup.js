@@ -12,17 +12,15 @@ const Signup = () => {
 
     return (
         <div>
-            <h1>Inside Signup Component</h1>
-            <form onSubmit={handleSubmit}>
-                <h2>Sign up</h2>
-
+            <h2>Sign up</h2>
+            <form className="signup" onSubmit={handleSubmit}>
                 <label>Email</label>
                 <input type="email" onChange={(e) => setEmail(e.target.value)} value={email} />
 
                 <label>Password</label>
                 <input type="password" onChange={(e) => setPassword(e.target.value)} value={password} />
 
-                <button>Sign up</button>
+                <button className="btn">Sign up</button>
             </form>
         </div>
     );

@@ -310,3 +310,33 @@ form button.btn-submit {
 .quiz-experience-container .btn.btn-next:hover {
     background-color: hsl(275, 100%, 30%);
 }
+
+/* Signup & Login Forms */
+form.signup,
+form.login {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    text-align: left;
+}
+
+form.signup label,
+form.login label,
+form.signup input,
+form.login input {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+form.signup label,
+form.login label {
+    padding-left: 0;
+}
+
+form.signup > *,
+form.login > * {
+    margin-top: 1rem;
+}
