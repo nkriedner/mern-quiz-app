@@ -1,6 +1,6 @@
 // IMPORTS:
 const mongoose = require("mongoose"); // for database connection
-const byrypt = require("bcrypt"); // for hashing passwords
+const bcrypt = require("bcrypt"); // for hashing passwords
 const validator = require("validator"); // for validating email & password when signing up
 
 // Initialize a mongoose Schema:
@@ -19,7 +19,7 @@ const userSchema = new Schema({
     },
 });
 
-// static signup model:
+// static signup method:
 // (the function needs to be a regular function to use the 'this' keyword)
 userSchema.statics.signup = async function (email, password) {
     // Validate email and password inputs:
@@ -33,7 +33,7 @@ userSchema.statics.signup = async function (email, password) {
         throw Error("Your password is not strong enough.");
     }
 
-    // Check if email already esists in database:
+    // Check if email already exists in database:
     const exists = await this.findOne({ email });
 
     if (exists) {
@@ -46,6 +46,29 @@ userSchema.statics.signup = async function (email, password) {
 
     // Create user:
     const user = await this.create({ email, password: hash });
+
+    return user;
+};
+
+// static login method
+userSchema.statics.login = async function (email, password) {
+    if (!email || !password) {
+        throw Error("All login fields must be filled out.");
+    }
+
+    // Check if email exists in database:
+    const user = await this.findOne({ email });
+
+    if (!user) {
+        throw Error("No user account with this email esists in database.");
+    }
+
+    // Check users hashed password:
+    const match = await bcrypt.compare(password, user.password);
+
+    if (!match) {
+        throw Error("The password for this user account is incorrect.");
+    }
 
     return user;
 };
