@@ -133,6 +133,7 @@ form button.btn-submit {
 
 .error-box {
     width: 500px;
+    max-width: 100%;
     border: 2px solid red;
     margin: 1rem auto 2rem auto;
     padding: 2.5rem;
