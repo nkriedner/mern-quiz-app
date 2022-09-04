@@ -8,8 +8,12 @@ const {
     deleteQuizdata,
     updateQuizdata,
 } = require("../controllers/quizdataController"); // imports the functions to interact with the database
+const requireAuth = require("../middleware/requireAuth");
 
 const router = express.Router(); // creates an express router
+
+// AUTHENTICATION MIDDLEWARE:
+router.use(requireAuth);
 
 // GET all quizdata
 router.get("/", getAllQuizdata);

@@ -2,13 +2,19 @@ import { useEffect } from "react";
 import QuizdataForm from "../components/QuizdataForm";
 import QuizdataDetails from "../components/QuizdataDetails";
 import { useQuizdataContext } from "../hooks/useQuizdataContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const EditData = () => {
     const { quizdata, dispatch } = useQuizdataContext();
+    const { user } = useAuthContext();
 
     useEffect(() => {
         const fetchAllQuizdata = async () => {
-            const response = await fetch("/api/quizdata");
+            const response = await fetch("/api/quizdata", {
+                headers: {
+                    Authorization: `Bearer ${user.token}`,
+                },
+            });
             const json = await response.json();
 
             if (response.ok) {
@@ -16,8 +22,10 @@ const EditData = () => {
             }
         };
 
-        fetchAllQuizdata();
-    }, [dispatch]);
+        if (user) {
+            fetchAllQuizdata();
+        }
+    }, [dispatch, user]);
 
     return (
         <div>

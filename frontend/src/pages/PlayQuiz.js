@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useQuizdataContext } from "../hooks/useQuizdataContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const PlayQuiz = () => {
     const { quizdata, dispatch } = useQuizdataContext();
+    const { user } = useAuthContext();
     const [currentQuizdata, setCurrentQuizdata] = useState([]);
     const [currentSolution, setCurrentSolution] = useState("");
     const [correctGuesses, setCorrectGuesses] = useState(0);
@@ -13,7 +15,11 @@ const PlayQuiz = () => {
 
     useEffect(() => {
         const fetchAllQuizdata = async (req, res) => {
-            const response = await fetch("/api/quizdata");
+            const response = await fetch("/api/quizdata", {
+                headers: {
+                    Authorization: `Bearer ${user.token}`,
+                },
+            });
             const json = await response.json();
 
             if (response.ok) {
@@ -23,8 +29,10 @@ const PlayQuiz = () => {
             getRandomQuizdata(json);
         };
 
-        fetchAllQuizdata();
-    }, [dispatch]);
+        if (user) {
+            fetchAllQuizdata();
+        }
+    }, [dispatch, user]);
 
     const getRandomQuizdata = (quizdataArray) => {
         const randomNumber = Math.floor(Math.random() * quizdataArray.length);

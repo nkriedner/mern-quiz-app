@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useAuthContext } from "../hooks/useAuthContext";
 import { useQuizdataContext } from "../hooks/useQuizdataContext";
 
 const QuizdataForm = () => {
     const { dispatch } = useQuizdataContext(); // destructures the dispatch function
+    const { user } = useAuthContext();
     const [newCategory, setNewCategory] = useState("");
     const [newQuestion, setNewQuestion] = useState("");
     const [newAnswer1, setNewAnswer1] = useState("");
@@ -16,6 +18,11 @@ const QuizdataForm = () => {
     // Function for handling the form submission:
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevents the default page reload on form submisstions
+
+        if (!user) {
+            setError("You need to be logged in to see this page.");
+            return;
+        }
 
         const newQuizdata = {
             category: newCategory,
@@ -33,6 +40,7 @@ const QuizdataForm = () => {
             body: JSON.stringify(newQuizdata),
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${user.token}`,
             },
         });
         const json = await response.json();

@@ -1,11 +1,20 @@
 import { useQuizdataContext } from "../hooks/useQuizdataContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const QuizdataDetails = ({ quizdata }) => {
     const { dispatch } = useQuizdataContext(); // to use the dispatch function
+    const { user } = useAuthContext();
 
     const handleClick = async () => {
+        if (!user) {
+            return;
+        }
+
         const response = await fetch("/api/quizdata/" + quizdata._id, {
             method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${user.token}`,
+            },
         });
         const json = await response.json();
 
