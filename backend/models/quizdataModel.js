@@ -7,10 +7,10 @@ const Schema = mongoose.Schema;
 // Create a (new) specific mongoose Schema:
 const quizdataSchema = new Schema(
     {
-        // category: {
-        //     type: String,
-        //     required: true,
-        // },
+        category: {
+            type: String,
+            required: true,
+        },
         question: {
             type: String,
             required: true,
@@ -38,6 +38,10 @@ const quizdataSchema = new Schema(
         memo_level: {
             type: Number,
             default: 1,
+        },
+        user_id: {
+            type: String,
+            required: true,
         },
     },
     { timestamps: true }

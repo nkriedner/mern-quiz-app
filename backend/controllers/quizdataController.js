@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 
 // GET all quizdata:
 const getAllQuizdata = async (req, res) => {
-    const allQuizdata = await Quizdata.find({}).sort({ createdAt: -1 });
+    const user_id = req.user._id;
+
+    const allQuizdata = await Quizdata.find({ user_id }).sort({ createdAt: -1 });
 
     res.status(200).json(allQuizdata);
 };
@@ -31,6 +33,7 @@ const getQuizdata = async (req, res) => {
 const createQuizdata = async (req, res) => {
     const { category, question, answer1, answer2, answer3, answer4, solution } = req.body;
 
+    // Check empty form fields:
     let emptyFields = [];
 
     if (!category) {
@@ -60,7 +63,17 @@ const createQuizdata = async (req, res) => {
 
     // Add document to database:
     try {
-        const quizdata = await Quizdata.create({ category, question, answer1, answer2, answer3, answer4, solution });
+        const user_id = req.user._id;
+        const quizdata = await Quizdata.create({
+            category,
+            question,
+            answer1,
+            answer2,
+            answer3,
+            answer4,
+            solution,
+            user_id,
+        });
         res.status(200).json(quizdata);
     } catch (error) {
         res.status(400).json({ error: error.message });
